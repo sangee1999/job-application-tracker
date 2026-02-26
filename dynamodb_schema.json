@@ -1,1 +1,46 @@
-{\n  "TableName": "JobApplications",\n  "KeySchema": [\n    {\n      "AttributeName": "user_id",\n      "KeyType": "HASH"\n    },\n    {\n      "AttributeName": "application_id",\n      "KeyType": "RANGE"\n    }\n  ],\n  "AttributeDefinitions": [\n    {\n      "AttributeName": "user_id",\n      "AttributeType": "S"\n    },\n    {\n      "AttributeName": "application_id",\n      "AttributeType": "S"\n    },\n    {\n      "AttributeName": "created_at",\n      "AttributeType": "S"\n    }\n  ],\n  "ProvisionedThroughput": {\n    "ReadCapacityUnits": 5,\n    "WriteCapacityUnits": 5\n  },\n  "GlobalSecondaryIndexes": [\n    {\n      "IndexName": "CreatedAtIndex",\n      "KeySchema": [\n        {\n          "AttributeName": "created_at",\n          "KeyType": "HASH"\n        }\n      ],\n      "Projection": {\n        "ProjectionType": "ALL"\n      },\n      "ProvisionedThroughput": {\n        "ReadCapacityUnits": 5,\n        "WriteCapacityUnits": 5\n      }\n    }\n  ]\n}
+{
+  "TableName": "JobApplications",
+  "AttributeDefinitions": [
+    {
+      "AttributeName": "application_id",
+      "AttributeType": "S"
+    },
+    {
+      "AttributeName": "user_id",
+      "AttributeType": "S"
+    },
+    {
+      "AttributeName": "created_at",
+      "AttributeType": "S"
+    }
+  ],
+  "KeySchema": [
+    {
+      "AttributeName": "user_id",
+      "KeyType": "HASH"
+    },
+    {
+      "AttributeName": "application_id",
+      "KeyType": "RANGE"
+    }
+  ],
+  "BillingMode": "PAY_PER_REQUEST",
+  "GlobalSecondaryIndexes": [
+    {
+      "IndexName": "created_at_index",
+      "KeySchema": [
+        {
+          "AttributeName": "user_id",
+          "KeyType": "HASH"
+        },
+        {
+          "AttributeName": "created_at",
+          "KeyType": "RANGE"
+        }
+      ],
+      "Projection": {
+        "ProjectionType": "ALL"
+      }
+    }
+  ]
+}
